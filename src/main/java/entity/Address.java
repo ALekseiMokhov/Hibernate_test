@@ -3,7 +3,7 @@ package entity;
 import java.util.Objects;
 
 public class Address {
-    private long id;
+    private Long id;
     private String country;
     private String city;
     private String street;
@@ -13,11 +13,11 @@ public class Address {
 
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

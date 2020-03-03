@@ -1,15 +1,17 @@
 package entity;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class Project {
-    private long id;
+    private Long id;
     private String title;
+    private Set<Employee> employees;
 
     public Project() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -25,6 +27,14 @@ public class Project {
         this.title = title;
     }
 
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -36,7 +46,7 @@ public class Project {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getTitle());
+        return Objects.hash(getId(), getTitle(),getEmployees());
     }
 
     @Override

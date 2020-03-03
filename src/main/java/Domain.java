@@ -1,34 +1,45 @@
+import buiseness_logic.Util;
 import entity.Address;
-import entity.EmplProject;
 import entity.Employee;
 import entity.Project;
-import service.AddressService;
-import service.EmplProjectService;
-import service.EmployeeService;
-import service.ProjectService;
-
-import java.sql.SQLException;
-import java.util.List;
+import org.hibernate.Session;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Domain
 {
     public static void main(String[] args) {
-        AddressService addressService = new AddressService();
-        EmployeeService employeeService = new EmployeeService();
-        ProjectService projectService = new ProjectService();
-        EmplProjectService emplProjectService = new EmplProjectService();
+        Session session = (Session) Util.getSessionFactory().openSession();
+        session.beginTransaction();
 
-        List<Address> addressList=addressService.getAll();
-        System.out.println(addressList.size());
-        for (Address address : addressList) {
-            System.out.println(address);
+        Address address = new Address();
+        address.setCountry("Tatuin");
+        address.setCity("MoonCity");
+        address.setStreet("NoNameStreet");
+        address.setPostcode("000");
 
-        }List<Employee> employeeList=employeeService.getAll();
-        System.out.println(employeeList.size());
-        for (Employee employee : employeeList) {
-            System.out.println(employee);
+        Employee employee = new Employee();
+        employee.setFirstName("c3pO");
+        employee.setLastName("Skywalker");
+        employee.setDate(java.sql.Date.valueOf("3546-03-17"));
+        employee.setAdress(address);
+
+        Project project = new Project();
+        project.setTitle("Translation");
+
+        Set<Project> projects=new HashSet<>();
+        projects.add(project);
+        employee.setProjects(projects);
+
+        session.save(address);
+        session.save(employee);
+        session.save(project);
+
+        session.getTransaction().commit();
+        Util.shutdown();
+
 
         }
 
-    }
+
 }
