@@ -3,42 +3,52 @@ import entity.Address;
 import entity.Employee;
 import entity.Project;
 import org.hibernate.Session;
+import service.AddressService;
+import service.EmployeeService;
+import service.ProjectService;
+
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Domain
 {
     public static void main(String[] args) {
-        Session session = (Session) Util.getSessionFactory().openSession();
-        session.beginTransaction();
+        AddressService addressService = new AddressService();
+        EmployeeService employeeService = new EmployeeService();
+        ProjectService projectService = new ProjectService();
+
 
         Address address = new Address();
-        address.setCountry("Gemany");
-        address.setCity("Munich");
-        address.setStreet("ShwartzStrasse");
-        address.setPostcode("123");
+        address.setCountry("Italy");
+        address.setCity("Paduva");
+        address.setStreet("piazza nihil");
+        address.setPostcode("0");
 
         Employee employee = new Employee();
-        employee.setFirstName("r2d2");
-        employee.setLastName("Skywalker");
-        employee.setDate(java.sql.Date.valueOf("4892-01-11"));
+        employee.setFirstName("Darth");
+        employee.setLastName("Vader");
+        employee.setDate(java.sql.Date.valueOf("4861-02-04"));
         employee.setAdress(address);
 
         Project project = new Project();
-        project.setTitle("Translation");
+        project.setTitle("AbsolutePower");
 
         Set<Project> projects=new HashSet<>();
         projects.add(project);
         employee.setProjects(projects);
 
-        session.save(address);
-        session.save(employee);
-        session.save(project);
+        addressService.add(address);
+        employeeService.add(employee);
+        projectService.add(project);
 
-        session.getTransaction().commit();
+        List<Employee> listToPrint=employeeService.getAll();
+        for (Employee employee1 : listToPrint) {
+            System.out.println(employee1);
+        }
+
+
         Util.shutdown();
-
-
         }
 
 
