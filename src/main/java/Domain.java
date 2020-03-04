@@ -13,15 +13,15 @@ public class Domain
         session.beginTransaction();
 
         Address address = new Address();
-        address.setCountry("Tatuin");
-        address.setCity("MoonCity");
-        address.setStreet("NoNameStreet");
-        address.setPostcode("000");
+        address.setCountry("Gemany");
+        address.setCity("Munich");
+        address.setStreet("ShwartzStrasse");
+        address.setPostcode("123");
 
         Employee employee = new Employee();
-        employee.setFirstName("c3pO");
+        employee.setFirstName("r2d2");
         employee.setLastName("Skywalker");
-        employee.setDate(java.sql.Date.valueOf("3546-03-17"));
+        employee.setDate(java.sql.Date.valueOf("4892-01-11"));
         employee.setAdress(address);
 
         Project project = new Project();
